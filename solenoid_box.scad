@@ -34,9 +34,9 @@ module enclosure_box() {
             sol_box_clearance.x + enclosure_thickness * 1.5,
             sol_box_clearance.y / 2 + enclosure_thickness,
             sol_box_clearance.z + enclosure_thickness
-        ]) cube([enclosure_thickness * 2, sol_plung_d, sol_box_clearance.z], center=true);
+        ]) cube([sol_plung_len, sol_plung_d, sol_box_clearance.z], center=true);
     }
 }
 
 enclosure_box();
-
+//solenoid_model();
