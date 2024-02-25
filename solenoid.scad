@@ -1,7 +1,7 @@
 // All units are in mm
 
 // Solenoid Box Dimensions
-sol_box = [20.5, 12, 11];
+sol_box = [21, 12.5, 11];
 // Solenoid box tolerances
 sol_box_tol = [0.2, 0.2, 0.2];
 // Clearance is the box size + tolerance
