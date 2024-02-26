@@ -9,7 +9,7 @@ sol_box_clearance = sol_box + sol_box_tol;
 
 // Mounting holes
 mount_d = 1;
-mount_len = 1;
+mount_len = 2;
 mount_spread_y = 6.05;
 mount_spread_x = 10.05;
 mount_start_x = 5.05;
@@ -23,6 +23,7 @@ sol_plung_len = 8;
 sol_plung_d = 7;
 
 wire_thickness = 2;
+wire_offset = 1;
 wire_length = 10;
 wire_height = sol_box_clearance.z / 2;
 
@@ -54,7 +55,7 @@ module solenoid_model(box_extension=[0,0,0]) {
             ]) cylinder(r = mount_d / 2, h = mount_len + 1);
         }
         // Draw the wire cutout portion of the box
-        translate([0, sol_box_clearance.y - 1, wire_height]) cube([wire_thickness, wire_length + 1, sol_box_clearance.z]);
+        translate([wire_offset, sol_box_clearance.y - 1, wire_height]) cube([wire_thickness, wire_length + 1, sol_box_clearance.z]);
     }
 
     // Draw the plunger portion of the solenoid
