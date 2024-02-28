@@ -29,14 +29,14 @@ module release_mechanism_cutout(dice_dimensions, plunger_travel, wall_thickness,
         dice_dimensions.y + 2 * wall_thickness + slider_tolerance, 
         wall_thickness + slider_tolerance
     ]);
-    translate([dice_dimensions.x - slider_tolerance / 2, slider_tolerance / -2, slider_tolerance / -2]) 
+    translate([dice_dimensions.x - 2 * plunger_travel - slider_tolerance / 2, slider_tolerance / -2, slider_tolerance / -2]) 
         cube([
-            2 * plunger_travel + wall_thickness / 2 + slider_tolerance, 
+            4 * plunger_travel + wall_thickness / 2 + slider_tolerance, 
             wall_thickness + slider_tolerance, 
             wall_thickness + dice_dimensions.z + slider_tolerance + plunger_travel
             ]);
-    translate([dice_dimensions.x - slider_tolerance / 2, wall_thickness + dice_dimensions.y - slider_tolerance / 2, slider_tolerance / -2]) 
-        cube([2 * plunger_travel + wall_thickness / 2 + slider_tolerance, wall_thickness + slider_tolerance, wall_thickness + dice_dimensions.z + slider_tolerance + plunger_travel]);
+    translate([dice_dimensions.x - 2 * plunger_travel- slider_tolerance / 2, wall_thickness + dice_dimensions.y - slider_tolerance / 2, slider_tolerance / -2]) 
+        cube([4 * plunger_travel + wall_thickness / 2 + slider_tolerance, wall_thickness + slider_tolerance, wall_thickness + dice_dimensions.z + slider_tolerance + plunger_travel]);
     translate([dice_dimensions.x  - slider_tolerance / 2, slider_tolerance / -2, dice_dimensions.z / 2 + wall_thickness  - slider_tolerance / 2]) 
     {
 
@@ -57,6 +57,12 @@ module release_mechanism_cutout(dice_dimensions, plunger_travel, wall_thickness,
     );
     }      
     }
+    translate([-wall_thickness * 2, wall_thickness - slider_tolerance, -slider_tolerance/2])
+    cube([
+        dice_dimensions.x + 2 * wall_thickness + plunger_travel + slider_tolerance * 2,
+        dice_dimensions.y + 2 * slider_tolerance,
+        wall_thickness + slider_tolerance 
+    ]);
 }
 
 module release_mechanism(dice_dimensions, plunger_travel, wall_thickness) {
@@ -75,6 +81,12 @@ module release_mechanism(dice_dimensions, plunger_travel, wall_thickness) {
     translate([dice_dimensions.x, 0, dice_dimensions.z + wall_thickness]) {
             cube([plunger_travel, dice_dimensions.y + wall_thickness * 2, plunger_travel]);
     }
+        translate([-wall_thickness * 2, wall_thickness, 0])
+    cube([
+        2.5 * wall_thickness ,
+        dice_dimensions.y,
+        wall_thickness 
+    ]);
 }
 
 //release_mechanism([14.5, 14.5, 14.5], 4.5, 3);
