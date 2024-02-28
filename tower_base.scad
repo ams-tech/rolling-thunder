@@ -37,18 +37,17 @@ module tower_base(dice_dimensions, plunger_travel, wall_thickness) {
     }
 }
 
-module tower(dice_dimensions, plunger_travel, wall_thickness) {
-    linear_extrude(wall_thickness * 2){
-        minkowski(){
-            square([
-                dice_dimensions.x + 2 * plunger_travel, 
-                dice_dimensions.y + 2 * wall_thickness,
-            ]);
-            circle(wall_thickness);
-        }
+module tower(dice_dimensions, plunger_travel, wall_thickness, tower_height) {
+    $fn = 64;
+    difference(){
+        linear_extrude(tower_height)
+            tower_base_flat(dice_dimensions, plunger_travel, wall_thickness);
+
+        translate([0, 0, -1 * wall_thickness / 2])
+            tower_mount_points(dice_dimensions, plunger_travel, wall_thickness, mount_tolerance=0.1);
+        
+        translate([wall_thickness * 2, wall_thickness * 2, -1])
+            cube([dice_dimensions.x, dice_dimensions.y, tower_height * 2]);
     }
 }
 
-//tower([14.5, 14.5, 14.5], 4.5, 3);
-
-tower_base([14.5, 14.5, 14.5], 4.5, 3);
