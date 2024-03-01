@@ -14,13 +14,13 @@ module tower_base_flat(dice_dimensions, plunger_travel, wall_thickness) {
 
 module tower_mount_points(dice_dimensions, plunger_travel, wall_thickness, mount_tolerance=0){
     translate([wall_thickness * 2, wall_thickness / 2, 0])
-        cylinder(r=wall_thickness / 3.14 + mount_tolerance, h=wall_thickness*3);
+        cylinder(r=wall_thickness / 4 + mount_tolerance, h=wall_thickness*3);
     translate([ dice_dimensions.x + 2 * plunger_travel, wall_thickness / 2, 0])
-        cylinder(r=wall_thickness / 3.14 + mount_tolerance, h=wall_thickness*3);
+        cylinder(r=wall_thickness / 4 + mount_tolerance, h=wall_thickness*3);
     translate([ dice_dimensions.x + 2 * plunger_travel, dice_dimensions.y + 3.5 * wall_thickness, 0])
-        cylinder(r=wall_thickness / 3.14 + mount_tolerance, h=wall_thickness*3);
+        cylinder(r=wall_thickness / 4 + mount_tolerance, h=wall_thickness*3);
     translate([wall_thickness * 2, dice_dimensions.y + 3.5 * wall_thickness, 0])
-        cylinder(r=wall_thickness / 3.14 + mount_tolerance, h=wall_thickness*3);
+        cylinder(r=wall_thickness / 4 + mount_tolerance, h=wall_thickness*3);
     
 }
 
@@ -51,8 +51,8 @@ module tower(dice_dimensions, plunger_travel, wall_thickness, tower_height) {
         translate([wall_thickness * 2, wall_thickness * 2, -1])
             cube([dice_dimensions.x, dice_dimensions.y, tower_height * 2]);
 
-        translate([wall_thickness, wall_thickness, 0])
-        release_mechanism_cutout(dice_dimensions, plunger_travel, wall_thickness);
+        translate([wall_thickness, wall_thickness, -wall_thickness])
+            release_mechanism_cutout(dice_dimensions, plunger_travel, wall_thickness);
     }
 }
 
