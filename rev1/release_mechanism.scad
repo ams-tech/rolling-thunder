@@ -22,7 +22,7 @@ module wedge(h,r,a)
 	}
 }
 
-module release_mechanism_cutout(dice_dimensions, plunger_travel, wall_thickness, slider_tolerance=0.5) {
+module release_mechanism_cutout(dice_dimensions, plunger_travel, wall_thickness, slider_tolerance=1) {
     translate([slider_tolerance / -2, slider_tolerance / -2, slider_tolerance / -2])
     cube([
         dice_dimensions.x + 2 * wall_thickness + plunger_travel + slider_tolerance , 
