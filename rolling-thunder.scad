@@ -116,6 +116,11 @@ module tower_base(){
 
     translate([0, 0, base_height - solid_passthrough])
     tower_mount_points(tolerance=0.1);
+
+    // Solenoid attachment
+    translate([-.5, .5, 0])
+    rotate([0, 0, -90])
+    solenoid_enclosure_box();
 }
 
 module tower(){
@@ -157,7 +162,3 @@ spring_solenoid_contact();
 translate([-25, base_width, tower_height])
 rotate([180,0,0])
 tower();
-
-
-translate([0, 30, 0])
-solenoid_enclosure_box();

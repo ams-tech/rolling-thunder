@@ -13,7 +13,7 @@ module enclosure_box_solid(){
         linear_extrude(sol_box_clearance.z + enclosure_thickness){
             minkowski(){
                 square([sol_box_clearance.x, sol_box_clearance.y]);
-                circle(enclosure_thickness);
+                circle(enclosure_thickness / 2);
             }
         }
     }
