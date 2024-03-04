@@ -1,4 +1,5 @@
 include <wedge.scad>
+include <solenoid_box.scad>
 
 solid_passthrough = 0.1;
 slider_tolerance = 0.5;
@@ -70,14 +71,15 @@ difference() {
 }
 
 module tower_mount_points(tolerance=0){
+    cylander_radius = wall_thickness / 4 - tolerance;
     translate([-wall_thickness / 4, wall_thickness,0])
-        cylinder(r=wall_thickness / 6 - tolerance, h=wall_thickness / 2);
+        cylinder(r=cylander_radius, h=wall_thickness / 2);
     translate([wall_thickness / 4 + base_length, wall_thickness,0])
-        cylinder(r=wall_thickness / 6 - tolerance, h=wall_thickness / 2);
+        cylinder(r=cylander_radius, h=wall_thickness / 2);
     translate([wall_thickness / 4 + base_length, -wall_thickness+ base_width,0])
-        cylinder(r=wall_thickness / 6 - tolerance, h=wall_thickness / 2);
+        cylinder(r=cylander_radius, h=wall_thickness / 2);
     translate([-wall_thickness / 4 , -wall_thickness + base_width,0])
-        cylinder( r=wall_thickness / 6 - tolerance, h=wall_thickness / 2);
+        cylinder( r=cylander_radius, h=wall_thickness / 2);
 }
 
 //spring_solenoid_contct();
@@ -155,3 +157,7 @@ spring_solenoid_contact();
 translate([-25, base_width, tower_height])
 rotate([180,0,0])
 tower();
+
+
+translate([0, 30, 0])
+solenoid_enclosure_box();
