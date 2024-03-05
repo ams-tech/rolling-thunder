@@ -145,12 +145,18 @@ module tower(){
         // Cut out the exit portion
         translate([-wall_thickness, contact_width + plunger_travel_tolerance + dice_side * .75, wall_thickness])
             cube([base_length + 2 * wall_thickness, base_width + 2 * wall_thickness + solid_passthrough, mechanism_height + dice_side_tolerance]);
+        
 
         // Cut out the mounting points
         translate([0, 0, -solid_passthrough])
             tower_mount_points();
-        
     }
+    
+    wedge_angle = atan(wall_thickness / (wall_thickness + contact_width));
+    translate([base_length / 2, plunger_travel_tolerance + dice_side, wall_thickness])
+    rotate([0, 0, 0])
+    rotate([0, 90, 0])
+    wedge(base_length, (wall_thickness + contact_width) - wall_thickness, wedge_angle);
 }
 
 tower_base();
