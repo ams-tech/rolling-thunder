@@ -70,7 +70,7 @@ difference() {
 }
 }
 
-module tower_mount_points(tolerance=0){
+module tower_mount_points(tolerance=0.01){
     cylander_radius = wall_thickness / 4 - tolerance;
     translate([-wall_thickness / 4, wall_thickness,0])
         cylinder(r=cylander_radius, h=wall_thickness / 2);
@@ -118,7 +118,7 @@ module tower_base(){
     tower_mount_points(tolerance=0.1);
 
     // Solenoid attachment
-    translate([-.5, .5, 0])
+    translate([-.5, wall_thickness - .1, 0])
     rotate([0, 0, -90])
     solenoid_enclosure_box();
 }

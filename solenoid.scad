@@ -63,8 +63,8 @@ module solenoid_model(box_extension=[0,0,0]) {
         cube([sol_plung_len + 1, sol_box_clearance.y - wall_thickness, sol_box_clearance.z + 5]);
     }
 
-    translate([0, wall_thickness * .5, wall_thickness * .5]) {
-        cube([sol_plung_len + 1, sol_box_clearance.y - wall_thickness, sol_box_clearance.z + 5]);
+    translate([-0.1, -wall_thickness * .5, 0]) {
+        cube([sol_plung_len + 1, sol_box_clearance.y + 2 * wall_thickness, sol_box_clearance.z + 5]);
     }
 }
 
