@@ -5,7 +5,7 @@ solid_passthrough = 0.1;
 slider_tolerance = 0.5;
 
 dice_side = 14.5;
-dice_dimensions = [dice_side, dice_side, dice_side];
+dice_dimensions = [dice_side + .2, dice_side + .2, dice_side];
 plunger_travel = 4.5;
 wall_thickness = 3;
 
@@ -45,7 +45,7 @@ dice_striker_full_height = dice_side + wall_thickness - slider_tolerance;
 mechanism_height = dice_striker_full_height + slider_tolerance;
 tower_height = mechanism_height + 30;
 
-module spring_solenoid_contact(){
+module striker(){
 
     cube([contact_length, contact_width, contact_height]);
 
@@ -60,13 +60,7 @@ difference() {
     translate([wall_thickness, 0, contact_height - solid_passthrough])
         cube([base_length - 2 * wall_thickness, contact_width, dice_striker_full_height]);
 
-    top_angle = atan((dice_striker_full_height - dice_strike_height + contact_height) / contact_width);
-    // Cut out the top angle
 
-    translate([contact_length / 2,contact_width + solid_passthrough, contact_height + dice_strike_height - wall_thickness])
-    rotate([90 + top_angle / 2, 0, 0])
-    rotate([0,90,0])
-    wedge(contact_length, contact_height + dice_striker_full_height, top_angle);
 }
 }
 
@@ -163,7 +157,7 @@ tower_base();
 
 translate([25, 25, 0])
 rotate([90, 0, 0])
-spring_solenoid_contact();
+striker();
 
 translate([-25, base_width, tower_height])
 rotate([180,0,0])
